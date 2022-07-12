@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="7dp"
+        app:cardCornerRadius="15dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -22,24 +22,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Name :"
+                    android:text="Name       :"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:textSize="20sp">
 
                 </TextView>
 
                 <TextView
                     android:id="@+id/name"
-                    android:layout_width="120dp"
+                    android:layout_width="142dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
-                    android:text="Prothomaa"
+                    android:text="  Abc"
                     android:textColor="@color/black"
                     android:textSize="20sp">
-
 
 
                 </TextView>
@@ -49,10 +49,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Time :"
+                    android:text="Time         :"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -60,11 +61,12 @@
 
                 <TextView
                     android:id="@+id/time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="230dp"
+                    android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:text="02-07-2022 04:30 AM"
-                    android:textSize="12sp">
+                    android:textColor="@color/black"
+                    android:textSize="20sp">
 
                 </TextView>
 
@@ -74,10 +76,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Systolic :"
+                    android:text="Systolic    :"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -89,7 +92,8 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:text="85"
-                    android:textSize="12sp">
+                    android:textColor="@color/black"
+                    android:textSize="20sp">
 
                 </TextView>
             </LinearLayout>
@@ -98,10 +102,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
-                    android:text="Diastolic :"
+                    android:text="Diastolic   :"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -109,11 +114,12 @@
 
                 <TextView
                     android:id="@+id/diastolic"
-                    android:layout_width="80dp"
+                    android:layout_width="84dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:text="127"
-                    android:textSize="12sp">
+                    android:textColor="@color/black"
+                    android:textSize="20sp">
 
                 </TextView>
 
@@ -123,10 +129,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="20dp"
                     android:text="Heart rate :"
+                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -137,8 +144,9 @@
                     android:layout_width="100dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
+                    android:textColor="@color/black"
                     android:text="127"
-                    android:textSize="12sp">
+                    android:textSize="20sp">
 
                 </TextView>
 

@@ -45,9 +45,9 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         ContactModel model = (ContactModel) arrContacts.get(position);
         holder.txtname.setText(model.name);
         holder.txttime.setText(model.time);
-        holder.txtsystolic.setText(model.systolic);
-        holder.txtdiastolic.setText(model.diastolic);
-        holder.txtheart.setText(model.heart);
+        holder.txtsystolic.setText(String.valueOf(model.systolic));
+        holder.txtdiastolic.setText(String.valueOf(model.diastolic));
+        holder.txtheart.setText(String.valueOf(model.heart));
 
 /*
         Calendar calendar = calendar = Calendar.getInstance();
@@ -77,9 +77,9 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
                 edtName.setText((arrContacts.get(position)).name);
                 //edtDate.setText((arrContacts.get(position)).time);
-                edtSystolic.setText((arrContacts.get(position)).systolic);
-                edtDiastolic.setText((arrContacts.get(position)).diastolic);
-                edtHeart.setText((arrContacts.get(position)).heart);
+                edtSystolic.setText(String.valueOf((arrContacts.get(position)).systolic));
+                edtDiastolic.setText(String.valueOf((arrContacts.get(position)).diastolic));
+                edtHeart.setText(String.valueOf((arrContacts.get(position)).heart));
 
                 btnAction.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -87,9 +87,9 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
                         String name = edtName.getText().toString();
                         //String date = edtDate.getText().toString();
-                        String systolic = edtSystolic.getText().toString();
-                        String diastolic = edtDiastolic.getText().toString();
-                        String heart = edtHeart.getText().toString();
+                        int systolic = Integer.parseInt(edtSystolic.getText().toString());
+                        int diastolic = Integer.parseInt(edtDiastolic.getText().toString());
+                        int heart = Integer.parseInt(edtHeart.getText().toString());
 
                         Calendar calendar = calendar = Calendar.getInstance();
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

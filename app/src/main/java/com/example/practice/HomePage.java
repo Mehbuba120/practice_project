@@ -40,9 +40,11 @@ public class HomePage extends AppCompatActivity {
         recyclerView =findViewById(R.id.recyclerview);
         btnOpenDialog = findViewById(R.id.btnOpenDialog);
 
-        Calendar calendar = calendar = Calendar.getInstance();
+        /*Calendar calendar = calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         dateAndTime = simpleDateFormat.format(calendar.getTime());
+
+         */
 
 
         btnOpenDialog.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +63,17 @@ public class HomePage extends AppCompatActivity {
                 btnAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+
                         String name = edtName.getText().toString();
-                        //String date = edtDate.getText().toString();
-                        //String date = edtDate.setText(dateAndTime);
-                        String systolic = edtSystolic.getText().toString();
-                        String diastolic = edtDiastolic.getText().toString();
-                        String heart = edtHeart.getText().toString();
+
+                        int systolic = Integer.parseInt(edtSystolic.getText().toString());
+                        int diastolic = Integer.parseInt(edtDiastolic.getText().toString());
+                        int heart = Integer.parseInt(edtHeart.getText().toString());
+
+                        Calendar calendar = calendar = Calendar.getInstance();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy,   HH:mm:ss");
+                        dateAndTime = simpleDateFormat.format(calendar.getTime());
 
 
                         arrContacts.add(new ContactModel(name,dateAndTime,systolic,diastolic,heart));

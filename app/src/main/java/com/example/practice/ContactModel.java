@@ -7,14 +7,15 @@ public class ContactModel {
     String dateAndTime = simpleDateFormat.format(calendar.getTime());
 */
 
-    String name , time , systolic , diastolic , heart ;
+    String name , time ;
+    int   systolic , diastolic , heart;
 
     public ContactModel(String name , String time){
         this.name = name ;
         this.time = time ;
     }
 
-    public ContactModel(String name , String time , String systolic , String diastolic , String heart ){
+    public ContactModel(String name , String time , int systolic , int diastolic , int heart ){
         this.name = name ;
         this.time = time ;
         this.systolic = systolic;
