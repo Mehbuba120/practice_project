@@ -31,11 +31,14 @@ public class HomePage extends AppCompatActivity {
     RecyclerContactAdapter adapter;
     FloatingActionButton btnOpenDialog ;
     String dateAndTime ;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+        databaseHelper= new DatabaseHelper(this);
+        arrContacts=databaseHelper.getTasks();
 
         recyclerView =findViewById(R.id.recyclerview);
         btnOpenDialog = findViewById(R.id.btnOpenDialog);
@@ -71,6 +74,7 @@ public class HomePage extends AppCompatActivity {
 
                         arrContacts.add(new ContactModel(name,dateAndTime,systolic,diastolic,heart));
                         adapter.notifyItemInserted(arrContacts.size()-1);
+                        databaseHelper.savetasks(arrContacts);
 
                         recyclerView.scrollToPosition(arrContacts.size()-1);
 
