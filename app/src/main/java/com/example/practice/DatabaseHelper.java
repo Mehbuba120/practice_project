@@ -10,8 +10,8 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class DatabaseHelper {
-    private SharedPreferences taskDatabase;
-    private Gson gson;
+    private final SharedPreferences taskDatabase;
+    private final Gson gson;
     public DatabaseHelper(Context context)
     {
         taskDatabase= context.getSharedPreferences("taskDatabase",Context.MODE_PRIVATE);

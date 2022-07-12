@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,7 @@ public class HomePage extends AppCompatActivity {
     RecyclerContactAdapter adapter;
     FloatingActionButton btnOpenDialog ;
     String dateAndTime ;
-    private DatabaseHelper databaseHelper;
+    DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +44,6 @@ public class HomePage extends AppCompatActivity {
         recyclerView =findViewById(R.id.recyclerview);
         btnOpenDialog = findViewById(R.id.btnOpenDialog);
 
-        /*Calendar calendar = calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        dateAndTime = simpleDateFormat.format(calendar.getTime());
-
-         */
 
 
         btnOpenDialog.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +64,20 @@ public class HomePage extends AppCompatActivity {
                     public void onClick(View view) {
 
 
+                        int systolic=0;
                         String name = edtName.getText().toString();
+                        if(Integer.parseInt(edtSystolic.getText().toString())<60 && Integer.parseInt(edtSystolic.getText().toString())>100)
+                        {
+                            Toast.makeText(HomePage.this,"Please put relevent data",Toast.LENGTH_SHORT);
+                        }
+                        else
+                        {
+                            systolic = Integer.parseInt(edtSystolic.getText().toString());
+                        }
 
-                        int systolic = Integer.parseInt(edtSystolic.getText().toString());
                         int diastolic = Integer.parseInt(edtDiastolic.getText().toString());
                         int heart = Integer.parseInt(edtHeart.getText().toString());
+
 
                         Calendar calendar = calendar = Calendar.getInstance();
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy,   HH:mm:ss");
@@ -81,6 +86,7 @@ public class HomePage extends AppCompatActivity {
 
                         arrContacts.add(new ContactModel(name,dateAndTime,systolic,diastolic,heart));
                         adapter.notifyItemInserted(arrContacts.size()-1);
+
                         databaseHelper.savetasks(arrContacts);
 
                         recyclerView.scrollToPosition(arrContacts.size()-1);

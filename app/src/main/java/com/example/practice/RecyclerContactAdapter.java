@@ -22,14 +22,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContactAdapter.ViewHolder> {
-
     Context context;
     ArrayList<ContactModel> arrContacts ;
+
+
+
+        //arrContacts=databaseHelper.getTasks();
+
 
     RecyclerContactAdapter(Context context , ArrayList<ContactModel> arrContacts){
         this.context = context ;
         this.arrContacts = arrContacts;
     }
+
+
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -49,11 +56,6 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         holder.txtdiastolic.setText(String.valueOf(model.diastolic));
         holder.txtheart.setText(String.valueOf(model.heart));
 
-/*
-        Calendar calendar = calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        String dateAndTime = simpleDateFormat.format(calendar.getTime());
-*/
 
 
         holder.llrow.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +65,6 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
                 dialog.setContentView(R.layout.update);
 
                 EditText edtName = dialog.findViewById(R.id.edtName);
-                //EditText edtDate = dialog.findViewById(R.id.edtDate);
                 EditText edtSystolic = dialog.findViewById(R.id.edtSys);
                 EditText edtDiastolic = dialog.findViewById(R.id.edtDias);
                 EditText edtHeart = dialog.findViewById(R.id.edtHeart);
@@ -97,6 +98,9 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
                         arrContacts.set(position, new ContactModel(name , dateAndTime , systolic,diastolic,heart));
                         notifyItemChanged(position);
+                        DatabaseHelper databaseHelper=new DatabaseHelper(context);
+                        databaseHelper.savetasks(arrContacts);
+
 
                         dialog.dismiss();
                     }
@@ -118,6 +122,10 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
                                 arrContacts.remove(position);
                                 notifyItemRemoved(position);
+                                notifyDataSetChanged();
+                                DatabaseHelper databaseHelper=new DatabaseHelper(context);
+                                databaseHelper.savetasks(arrContacts);
+
                             }
                         })
                         .setNegativeButton("NO", new DialogInterface.OnClickListener() {
