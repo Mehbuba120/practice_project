@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,34 +65,68 @@ public class HomePage extends AppCompatActivity {
                     public void onClick(View view) {
 
 
-                        int systolic=0;
                         String name = edtName.getText().toString();
-                        if(Integer.parseInt(edtSystolic.getText().toString())<60 && Integer.parseInt(edtSystolic.getText().toString())>100)
-                        {
-                            Toast.makeText(HomePage.this,"Please put relevent data",Toast.LENGTH_SHORT);
-                        }
-                        else
-                        {
-                            systolic = Integer.parseInt(edtSystolic.getText().toString());
-                        }
-
-                        int diastolic = Integer.parseInt(edtDiastolic.getText().toString());
-                        int heart = Integer.parseInt(edtHeart.getText().toString());
+                        String systolic = edtSystolic.getText().toString();
+                        String diastolic = edtDiastolic.getText().toString();
+                        String heart = edtHeart.getText().toString();
 
 
                         Calendar calendar = calendar = Calendar.getInstance();
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy,   HH:mm:ss");
                         dateAndTime = simpleDateFormat.format(calendar.getTime());
 
+                        if(Integer.valueOf(systolic)>200)
+                        {
+                            Toast.makeText(HomePage.this,"Invalid!! systolic must be between 70 and 180",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(systolic)<60)
+                        {
+                            Toast.makeText(HomePage.this,"Invalid!! systolic must be between 70 and 180",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(diastolic)<20)
+                        {
+                            Toast.makeText(HomePage.this,"Invalid!! diastolic must be between 20 and 120",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(diastolic)>100)
+                        {
+                            Toast.makeText(HomePage.this,"Invalid!! diastolic must be between 20 and 120",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(heart)<50)
+                        {
+                            Toast.makeText(HomePage.this,"Invalid!! heart rate must be between 50 and 100",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(heart)>100)
+                        {
+                            Toast.makeText(HomePage.this,"Invalid!! heart rate must be between 50 and 100",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(name))
+                        {
+                            Toast.makeText(HomePage.this,"Please enter your name",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(systolic))
+                        {
+                            Toast.makeText(HomePage.this,"Please enter systolic pressure",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(diastolic))
+                        {
+                            Toast.makeText(HomePage.this,"Please enter diastolic pressure",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(heart))
+                        {
+                            Toast.makeText(HomePage.this,"Please enter the heart rate",Toast.LENGTH_SHORT).show();
+                        }
 
-                        arrContacts.add(new ContactModel(name,dateAndTime,systolic,diastolic,heart));
-                        adapter.notifyItemInserted(arrContacts.size()-1);
+                        else
+                        {
+                            arrContacts.add(new ContactModel(name,dateAndTime,systolic,diastolic,heart));
+                            adapter.notifyItemInserted(arrContacts.size()-1);
 
-                        databaseHelper.savetasks(arrContacts);
+                            databaseHelper.savetasks(arrContacts);
+                            recyclerView.scrollToPosition(arrContacts.size()-1);
 
-                        recyclerView.scrollToPosition(arrContacts.size()-1);
+                            dialog.dismiss();
+                        }
 
-                        dialog.dismiss();
                     }
                 });
 

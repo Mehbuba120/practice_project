@@ -92,6 +92,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:text="85"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -118,6 +119,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
                     android:text="127"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:textSize="20sp">
 
@@ -144,6 +146,7 @@
                     android:layout_width="100dp"
                     android:layout_height="30dp"
                     android:layout_marginLeft="20dp"
+                    android:inputType="number"
                     android:textColor="@color/black"
                     android:text="127"
                     android:textSize="20sp">

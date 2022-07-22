@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,9 +54,9 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
         ContactModel model = (ContactModel) arrContacts.get(position);
         holder.txtname.setText(model.name);
         holder.txttime.setText(model.time);
-        holder.txtsystolic.setText(String.valueOf(model.systolic));
-        holder.txtdiastolic.setText(String.valueOf(model.diastolic));
-        holder.txtheart.setText(String.valueOf(model.heart));
+        holder.txtsystolic.setText(model.systolic);
+        holder.txtdiastolic.setText(model.diastolic);
+        holder.txtheart.setText(model.heart);
 
 
 
@@ -76,33 +78,78 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
                 btnAction.setText("UPDATE");
 
+
                 edtName.setText((arrContacts.get(position)).name);
                 //edtDate.setText((arrContacts.get(position)).time);
-                edtSystolic.setText(String.valueOf((arrContacts.get(position)).systolic));
-                edtDiastolic.setText(String.valueOf((arrContacts.get(position)).diastolic));
-                edtHeart.setText(String.valueOf((arrContacts.get(position)).heart));
+                edtSystolic.setText((arrContacts.get(position)).systolic);
+                edtDiastolic.setText((arrContacts.get(position).diastolic));
+                edtHeart.setText((arrContacts.get(position).heart));
 
                 btnAction.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                         String name = edtName.getText().toString();
-                        //String date = edtDate.getText().toString();
-                        int systolic = Integer.parseInt(edtSystolic.getText().toString());
-                        int diastolic = Integer.parseInt(edtDiastolic.getText().toString());
-                        int heart = Integer.parseInt(edtHeart.getText().toString());
+                        String systolic = edtSystolic.getText().toString();
+                        String diastolic =edtDiastolic.getText().toString();
+                        String heart =edtHeart.getText().toString();
 
                         Calendar calendar = calendar = Calendar.getInstance();
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy, HH:mm:ss");
                         String dateAndTime = simpleDateFormat.format(calendar.getTime());
 
-                        arrContacts.set(position, new ContactModel(name , dateAndTime , systolic,diastolic,heart));
-                        notifyItemChanged(position);
-                        DatabaseHelper databaseHelper=new DatabaseHelper(context);
-                        databaseHelper.savetasks(arrContacts);
+
+                        if(Integer.valueOf(systolic)>200)
+                        {
+                            Toast.makeText(context,"Invalid!! systolic must be between 70 and 180",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(systolic)<60)
+                        {
+                            Toast.makeText(context,"Invalid!! systolic must be between 70 and 180",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(diastolic)<20)
+                        {
+                            Toast.makeText(context,"Invalid!! diastolic must be between 20 and 120",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(diastolic)>100)
+                        {
+                            Toast.makeText(context,"Invalid!! diastolic must be between 20 and 120",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(heart)<50)
+                        {
+                            Toast.makeText(context,"Invalid!! heart rate must be between 50 and 100",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(Integer.valueOf(heart)>100)
+                        {
+                            Toast.makeText(context,"Invalid!! heart rate must be between 50 and 100",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(name))
+                        {
+                            Toast.makeText(context,"Please enter your name",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(systolic))
+                        {
+                            Toast.makeText(context,"Please enter systolic pressure",Toast.LENGTH_SHORT).show();
+                        }
+                        else if (TextUtils.isEmpty(diastolic))
+                        {
+                            Toast.makeText(context,"Please enter the diastolic pressure",Toast.LENGTH_SHORT).show();                       }
+                        else if (TextUtils.isEmpty(heart))
+                        {
+                            Toast.makeText(context,"Please enter the heart rate",Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            arrContacts.set(position, new ContactModel(name , dateAndTime , systolic,diastolic,heart));
+                            notifyItemChanged(position);
+                            DatabaseHelper databaseHelper=new DatabaseHelper(context);
+                            databaseHelper.savetasks(arrContacts);
 
 
-                        dialog.dismiss();
+                            dialog.dismiss();
+                        }
+
+
+
                     }
                 });
 

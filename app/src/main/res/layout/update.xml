@@ -42,7 +42,7 @@
         android:padding="11dp"
         android:id="@+id/edtSys"
         android:layout_marginBottom="11dp"
-        android:inputType="text"/>
+        android:inputType="number"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
         android:padding="11dp"
         android:id="@+id/edtDias"
         android:layout_marginBottom="11dp"
-        android:inputType="text"/>
+        android:inputType="number"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
         android:padding="11dp"
         android:id="@+id/edtHeart"
         android:layout_marginBottom="11dp"
-        android:inputType="text"/>
+        android:inputType="number"/>
 
     <Button
         android:layout_width="wrap_content"
