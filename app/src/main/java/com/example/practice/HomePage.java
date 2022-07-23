@@ -35,6 +35,8 @@ public class HomePage extends AppCompatActivity {
     String dateAndTime ;
     DatabaseHelper databaseHelper;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,5 +143,8 @@ public class HomePage extends AppCompatActivity {
 
         adapter = new RecyclerContactAdapter(this,arrContacts);
         recyclerView.setAdapter(adapter);
+
+
     }
+
 }

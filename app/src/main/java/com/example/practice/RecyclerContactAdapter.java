@@ -27,11 +27,6 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
     Context context;
     ArrayList<ContactModel> arrContacts ;
 
-
-
-        //arrContacts=databaseHelper.getTasks();
-
-
     RecyclerContactAdapter(Context context , ArrayList<ContactModel> arrContacts){
         this.context = context ;
         this.arrContacts = arrContacts;
